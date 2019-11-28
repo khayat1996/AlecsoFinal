@@ -1,0 +1,30 @@
+<div id="div">
+</div>
+
+<table border="1">
+    <tr>
+        <td>Id</td><td>Title</td><td>pays</td>
+    </tr>
+
+</table>
+{{ form_start(form) }}
+{{ form(form) }}
+{{ form_end(form) }}
+
+<script src="{{ absolute_url(asset('assests/vendor/jquery/jquery.js')) }}"></script>
+<script>
+    $("#myapp_parcbundle_marque_libelle").keyup(
+        function(){
+            var serie=$('#myapp_parcbundle_marque_libelle').val();
+            var DATA = 'serie=' + serie;
+            $.ajax({
+                type: "POST",
+                url: "{{ path('alecso_evenement_homepage')}}",
+                data:DATA,
+                success: function (msg) {
+                    $( "#div" ).html( msg );
+                }
+            });
+        });
+
+</script>

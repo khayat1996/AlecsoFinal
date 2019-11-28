@@ -1,0 +1,91 @@
+alecso_admin_homepage:
+    path:     /admin
+    defaults: { _controller: AlecsoEvenementBundle:Default:index }
+
+alecso_partenaire_homepage:
+    path:     /partenaire
+    defaults: { _controller: AlecsoEvenementBundle:Default:indexPart }
+
+alecso_User_homepage:
+    path:     /user
+    defaults: { _controller: AlecsoEvenementBundle:Default:indexUser }
+
+alecso_admin_editprofil:
+    path:     /admin/profile
+    defaults: { _controller: AlecsoEvenementBundle:Default:editProfile }
+
+alecso_partenaire_editprofil:
+    path:     /partenaire/profile
+    defaults: { _controller: AlecsoEvenementBundle:EvenementPart:editProfile }
+
+alecso_evenement_ajout:
+    path:     /admin/evenement/ajoute
+    defaults: { _controller: AlecsoEvenementBundle:Evenement:ajoute }
+
+alecso_evenement_homepage:
+    path:     /admin/evenement/
+    defaults: { _controller: AlecsoEvenementBundle:Default:test }
+
+alecso_evenement_view:
+    path:     /admin/evenement/view
+    defaults: { _controller: AlecsoEvenementBundle:Evenement:view }
+
+alecso_evenement_delete:
+    path:     /admin/evenement/delete/{id}
+    defaults: { _controller: AlecsoEvenementBundle:Evenement:delete }
+
+alecso_evenement_update:
+    path:     /admin/evenement/update/{id}
+    defaults: { _controller: AlecsoEvenementBundle:Evenement:update }
+
+alecso_evenement_show:
+    path:     /admin/evenement/showevent/{id}
+    defaults: { _controller: AlecsoEvenementBundle:Evenement:showEvent }
+
+alecso_evenement_view_partenaire:
+    path:     /partenaire/evenement/view
+    defaults: { _controller: AlecsoEvenementBundle:EvenementPart:view }
+
+alecso_evenement_ajoute_partenaire:
+    path:     /partenaire/evenement/ajoute
+    defaults: { _controller: AlecsoEvenementBundle:EvenementPart:ajoute }
+
+alecso_evenement_delete_partenaire:
+    path:     /partenaire/evenement/delete/{id}
+    defaults: { _controller: AlecsoEvenementBundle:EvenementPart:delete }
+
+alecso_evenement_update_partenaire:
+    path:     /partenaire/evenement/update/{id}
+    defaults: { _controller: AlecsoEvenementBundle:EvenementPart:update }
+
+alecso_evenement_homepage_partenaire:
+    path:     /partenaire/evenement/
+    defaults: { _controller: AlecsoEvenementBundle:Default:test }
+
+alecso_evenement_show_partenaire:
+    path:     /partenaire/evenement/showevent/{id}
+    defaults: { _controller: AlecsoEvenementBundle:EvenementPart:showEvent }
+
+alecso_search:
+    path:     /admin/evenement/ss
+    defaults: { _controller: AlecsoEvenementBundle:Default:testsearch }
+
+alecso_evenement_homepage_user:
+    path:     /user/evenement/
+    defaults: { _controller: AlecsoEvenementBundle:EvenementUser:view }
+
+alecso_evenement_show_user:
+    path:     /user/evenement/showevent/{id}
+    defaults: { _controller: AlecsoEvenementBundle:EvenementUser:showEvent }
+
+alecso_evenement_participe_user:
+    path:     /user/evenement/participe/{id}
+    defaults: { _controller: AlecsoEvenementBundle:EvenementUser:participe }
+
+alecso_evenement_participe_view_user:
+    path:     /user/evenement/participe/
+    defaults: { _controller: AlecsoEvenementBundle:EvenementUser:viewParticipe }
+
+alecso_evenement_participe_annule_user:
+    path:     /user/evenement/annuler/{id}
+    defaults: { _controller: AlecsoEvenementBundle:EvenementUser:annulePart }

@@ -1,0 +1,366 @@
+{% extends "partenaireBack.html.twig" %}
+{% block title %}Statistiques des Evenemets{% endblock %}
+{% block pagetitle %}Statistique {% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-4 col-lg-3">
+
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="thumb-info mb-md">
+                        <img src="{{ absolute_url(asset('files/')) }}{{ app.user.media }}" class="rounded img-responsive" alt="John Doe">
+                        <div class="thumb-info-title">
+                            <span class="thumb-info-inner">{{ app.user.prenom }} {{ app.user.nom }}</span>
+                            <span class="thumb-info-type">PARTENAIRE</span>
+                        </div>
+                    </div>
+
+                    <div class="widget-toggle-expand mb-md">
+                        <div class="widget-header">
+                            <h6>Profile :</h6>
+                            <div class="widget-toggle">+</div>
+                        </div>
+                        <div class="widget-content-expanded">
+                            <ul class="simple-todo-list">
+                                <li>Date de naissance : {{ app.user.dob|date("F j, Y") }}</li>
+                                <li>Telephone : {{ app.user.tel }}</li>
+                                <li>Ville : {{ app.user.ville }}</li>
+                                <li>Adresse : {{ app.user.adresse }}</li>
+                                <li>Code Postale : {{ app.user.codepost }}</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <hr class="dotted short">
+
+                    <h6 class="text-muted">Biographie</h6>
+                    <p>{{ app.user.bio }}</p>
+                </div>
+            </section>
+
+        </div>
+        <div class="col-md-8 col-lg-6">
+
+            <div class="tabs">
+                <ul class="nav nav-tabs tabs-primary">
+                    <li class="active">
+                        <a href="#overview" data-toggle="tab">Overview</a>
+                    </li>
+                    <li>
+                        <a href="#modifcomp" data-toggle="tab">Modifier Compte</a>
+                    </li>
+                    <li>
+                        <a href="#edit" data-toggle="tab">Modifier Organisation</a>
+                    </li>
+                    <li>
+                        <a href="#passEdit" data-toggle="tab">Modifier Password</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+
+                    <div id="overview" class="tab-pane active">
+                        <div class="thumb-info mb-md">
+                            <img src="{{ absolute_url(asset('files/')) }}{{ partenaire.media }}" class="rounded img-responsive" alt="John Doe">
+                            <div class="thumb-info-title">
+                                <span class="thumb-info-inner">{{ partenaire.nom }}</span>
+                            </div>
+                        </div>
+                        <h4 class="mb-md">Information</h4>
+                        <div class="widget-toggle-expand mb-md">
+                            <div class="widget-header">
+                                <h6>Nom d'organisation : {{ partenaire.nom }}</h6>
+                                <div class="widget-toggle">+</div>
+                            </div>
+                            <div class="widget-content-expanded">
+                                <ul class="simple-todo-list">
+                                    <li>Type d'organisation : {{ partenaire.type }}</li>
+                                    <li>Telephone 1 : {{ partenaire.tel1 }}</li>
+                                    <li>Telephone 2 : {{ partenaire.tel2 }}</li>
+                                    <li>Ville : {{ partenaire.ville }}</li>
+                                    <li>Adresse : {{ partenaire.adresse }}</li>
+                                    <li>Code Postale : {{ partenaire.codepost }}</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <hr class="dotted short">
+
+                        <h6 class="text-muted">Biographie</h6>
+                        <p>{{ partenaire.description }}</p>
+
+                    </div>
+                    <div id="modifcomp" class="tab-pane">
+                        {{ form_start(form) }}
+                            <h4 class="mb-xlg">Personal Information</h4>
+
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileFirstName">Nom </label>
+                                    <div class="col-md-8">
+                                        {{ form_row(form.nom , {'attr':{'class':'form-control', 'id':'profileFirstName'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileLastName">Prénom</label>
+                                    <div class="col-md-8">
+                                        {{ form_row(form.prenom , {'attr':{'class':'form-control', 'id':'profileLastName'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileLastName">Gender</label>
+                                    <div class="col-md-8">
+                                        {{ form_row(form.gender) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileLastName">Date de Naissence</label>
+                                    <div class="col-md-8">
+                                        {{ form_row(form.dob) }}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <hr class="dotted tall">
+                            <h4 class="mb-xlg">Adresse</h4>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileAddress">Ville</label>
+                                    <div class="col-md-8">
+                                        {{ form_row(form.ville , {'attr':{'class':'form-control', 'id':'profileAddress'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileAddress">Address</label>
+                                    <div class="col-md-8">
+                                        {{ form_row(form.adresse , {'attr':{'class':'form-control', 'id':'profileAddress'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileAddress">Code Postal</label>
+                                    <div class="col-md-8">
+                                        {{ form_row(form.codepost , {'attr':{'class':'form-control', 'id':'profileAddress'}}) }}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <hr class="dotted tall">
+                            <h4 class="mb-xlg">About Yourself</h4>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileBio">Biographical Info</label>
+                                    <div class="col-md-8">
+                                        {{ form_row(form.bio , {'attr':{'class':'form-control', 'id':'profileBio'}}) }}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <hr class="dotted tall">
+                            <h4 class="mb-xlg">Change Email et Username</h4>
+                            <fieldset class="mb-xl">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileNewPassword">Username</label>
+                                    <div class="col-md-8">
+                                        {{ form_row(form.username , {'attr':{'class':'form-control', 'id':'profileBio'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileNewPassword">Email</label>
+                                    <div class="col-md-8">
+                                        {{ form_row(form.email , {'attr':{'class':'form-control', 'id':'profileBio'}}) }}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileNewPassword">Confirmation</label>
+                                    <div class="col-md-8">
+                                        {{ form_row(form.plainPassword , {'attr':{'class':'form-control', 'id':'profileBio'}}) }}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <hr class="dotted tall">
+                            <h4 class="mb-xlg">Images</h4>
+                            <fieldset class="mb-xl">
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="profileBio">Images</label>
+                                    <div class="col-md-8">
+                                        <span class="btn btn-default btn-file">
+                                            {{ form_row(form.media) }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="panel-footer">
+                                <div class="row">
+
+                                    <div class="col-md-9 col-md-offset-8">
+                                        <input type="submit" value="Submit" class="btn btn-primary"/>
+                                    </div>
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
+                    </div>
+                    <div id="edit" class="tab-pane">
+
+                        {{ form_start(formpart, {'attr': { 'name':'formpart' }})  }}
+                        <h4 class="mb-xlg">Information</h4>
+
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileFirstName">Nom </label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpart.nom , {'attr':{'class':'form-control', 'id':'profileFirstName'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileLastName">Type</label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpart.type , {'attr':{'class':'form-control', 'id':'profileLastName'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileLastName">Telephone 1</label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpart.tel1 , {'attr':{'class':'form-control', 'id':'profileLastName'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileLastName">Telephone 2</label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpart.tel2 , {'attr':{'class':'form-control', 'id':'profileLastName'}}) }}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <hr class="dotted tall">
+                        <h4 class="mb-xlg">Adresse</h4>
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileAddress">Ville</label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpart.ville , {'attr':{'class':'form-control', 'id':'profileAddress'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileAddress">Address</label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpart.adresse , {'attr':{'class':'form-control', 'id':'profileAddress'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileAddress">Code Postal</label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpart.codepost , {'attr':{'class':'form-control', 'id':'profileAddress'}}) }}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <hr class="dotted tall">
+                        <h4 class="mb-xlg">Description Generale</h4>
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileBio">Description</label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpart.description , {'attr':{'class':'form-control', 'id':'profileBio'}}) }}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <hr class="dotted tall">
+                        <h4 class="mb-xlg">Images</h4>
+                        <fieldset class="mb-xl">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileBio">Images d'organisation</label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpart.media , {'attr':{'class':'form-control'}}) }}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-md-9 col-md-offset-8">
+                                    <input type="submit" value="Submit" class="btn btn-primary"/>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(formpart) }}
+                    </div>
+                    <div id="passEdit" class="tab-pane">
+                        {{ form_start(formpass) }}
+                        <h4 class="mb-xlg">Change Email et Username</h4>
+                        <fieldset class="mb-xl">
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileNewPassword">Username</label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpass.current_password , {'attr':{'class':'form-control', 'id':'profileBio'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileNewPassword">Confirmation</label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpass.plainPassword.first , {'attr':{'class':'form-control', 'id':'profileBio'}}) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label" for="profileNewPassword">Confirmation</label>
+                                <div class="col-md-8">
+                                    {{ form_row(formpass.plainPassword.second , {'attr':{'class':'form-control', 'id':'profileBio'}}) }}
+                                </div>
+                            </div>
+                        </fieldset>
+                        <div class="panel-footer">
+                            <div class="row">
+
+                                <div class="col-md-9 col-md-offset-8">
+                                    <input type="submit" value="Submit" class="btn btn-primary"/>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_end(formpass) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-3">
+
+            <h4 class="mb-md">Sale Stats</h4>
+            <ul class="simple-card-list mb-xlg">
+                <li class="primary">
+                    <h3>{{ actualnbr }}</h3>
+                    <p>Actualités Creés</p>
+                </li>
+                <li class="primary">
+                    <h3>{{ eventnbr }}</h3>
+                    <p>Evenements Creés</p>
+                </li>
+                <li class="primary">
+                    <h3>{{ comptnbr }}</h3>
+                    <p>Compétitions Creés</p>
+                </li>
+                <li class="primary">
+                    <h3>{{ offrenbr }}</h3>
+                    <p>Offres de Travaille Creés</p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}
+{% block javascript %}
+    <!-- Vendor -->
+    <script src="{{ absolute_url(asset('assests/vendor/jquery/jquery.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-browser-mobile/jquery.browser.mobile.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/bootstrap/js/bootstrap.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/nanoscroller/nanoscroller.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/magnific-popup/jquery.magnific-popup.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-placeholder/jquery-placeholder.js')) }}"></script>
+    <!-- Specific Page Vendor -->
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-datatables/media/js/jquery.dataTables.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-datatables-bs3/assets/js/datatables.js')) }}"></script>
+    <!-- Theme Base, Components and Settings -->
+    <script src="{{ absolute_url(asset('assests/javascripts/theme.js')) }}"></script>
+    <!-- Theme Custom -->
+    <script src="{{ absolute_url(asset('assests/javascripts/theme.custom.js')) }}"></script>
+    <!-- Theme Initialization Files -->
+    <script src="{{ absolute_url(asset('assests/javascripts/theme.init.js')) }}"></script>
+    <!-- Examples -->
+    <script src="{{ absolute_url(asset('assests/javascripts/tables/examples.datatables.default.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/javascripts/tables/examples.datatables.row.with.details.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/autosize/autosize.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js')) }}"></script>
+
+{% endblock %}

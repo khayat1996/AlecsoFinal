@@ -1,0 +1,18 @@
+/* Add here all your CSS customizations */
+#form_date_start_date_day,#form_date_start_date_day ,#form_date_start_date_month,#form_date_start_date_year,#form_date_start_time_hour,#form_date_start_time_minute,
+#form_date_fin_date_day,#form_date_fin_date_day ,#form_date_fin_date_month,#form_date_fin_date_year,#form_date_fin_time_hour,#form_date_fin_time_minute{
+	line-height: 1;
+	padding-right: 0;
+	padding-left: 0;
+	height: 30px;
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 15px !important;
+}
+
+
+

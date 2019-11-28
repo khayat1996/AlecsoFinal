@@ -1,0 +1,141 @@
+{% extends "adminBack.html.twig" %}
+{% block title %}Statistiques des Evenemets{% endblock %}
+{% block pagetitle %}Statistique {% endblock %}
+{% block barebutton %}
+    <div class="right-wrapper pull-right">
+        <ol class="breadcrumbs">
+            <li>
+                <a href="{{ absolute_url(asset('')) }}app_dev.php/admin/evenement/view">
+                    <span class="h4"> Gestion des Evenements </span> <i class="fa fa-wrench"></i>
+                </a>
+            </li>
+        </ol>
+        <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+    </div>
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-4 col-lg-3">
+            <section class="panel">
+                <div class="panel-body">
+                    <div class="thumb-info mb-md">
+                        <img src="{{ absolute_url(asset('files/')) }}{{ partenaire.media }}" class="rounded img-responsive" alt="John Doe">
+                        <div class="thumb-info-title">
+                            <span class="thumb-info-inner">{{ partenaire.nom }}</span>
+                            <span class="thumb-info-type">Proprietere</span>
+                        </div>
+                    </div>
+
+                    <div class="widget-toggle-expand mb-md">
+                        <div class="widget-header">
+                            <h6>Profile :</h6>
+                            <div class="widget-toggle">+</div>
+                        </div>
+                        <div class="widget-content-expanded">
+                            <ul class="simple-todo-list">
+                                <li>Type : {{ partenaire.type }}</li>
+                                <li>Telephone 1 : {{ partenaire.tel1 }}</li>
+                                <li>Telephone 2 : {{ partenaire.tel2 }}</li>
+                                <li>Ville : {{ partenaire.ville }}</li>
+                                <li>Adresse : {{ partenaire.adresse }}</li>
+                                <li>Code Postale : {{ partenaire.codePost }}</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <hr class="dotted short">
+
+                    <h6 class="text-muted">Description</h6>
+                    <p>{{ partenaire.description }}</p>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-8 col-lg-6">
+            <section class="panel panel-featured">
+                <div class="tabs">
+                    <div class="tab-content">
+                        <div id="overview" class="tab-pane active">
+                            <div class="thumb-info mb-md">
+                                <img src="{{ absolute_url(asset('files/')) }}{{ event.media }}" class="rounded img-responsive" alt="John Doe">
+                                <div class="thumb-info-title">
+                                    <span class="thumb-info-inner">{{ event.title }}</span>
+                                </div>
+                            </div>
+                            <h4 class="mb-md">Nom d'evenement : {{ event.title }}</h4>
+                            <div class="widget-toggle-expand mb-md">
+                                <div class="widget-header">
+                                    <h6>Information</h6>
+                                    <div class="widget-toggle">+</div>
+                                </div>
+                                <div class="widget-content-expanded">
+                                    <ul class="simple-todo-list">
+                                        <li>Type d'evenement : {{ event.type }}</li>
+                                        <li>Nomber Max De participent : {{ event.nbrPart }}</li>
+                                        <li>Date Debut : {{ event.dateStart|date }}</li>
+                                        <li>Date Fin : {{ event.dateFin|date }}</li>
+                                        <hr class="dotted short">
+                                        <li>Ville : {{ event.ville }}</li>
+                                        <li>Adresse : {{ event.adresse }}</li>
+                                        <li>Code Postale : {{ event.codepost }}</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <hr class="dotted short">
+
+                            <h6 class="text-muted">Description</h6>
+                            <p>{{ event.description }}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-12 col-lg-3">
+            <ul class="simple-card-list mb-xlg">
+                <li class="primary">
+                    <h3>{{ eventnbr }} / <span class="h5">{{ event.nbrPart }}</span> </h3>
+                    <p>Nombre des participents</p>
+                </li>
+                <li class="primary">
+                    <div class="btn-group btn-group-justified">
+                        {% if event.idAdmin == NULL %}
+                            <a class="btn btn-primary" role="button" disabled>Modifier</a>
+                        {% else %}
+                            <a href="{{ absolute_url(asset('')) }}app_dev.php/admin/evenement/update/{{ event.idEvent }}" class="btn btn-primary" role="button">Modifier</a>
+                        {% endif %}
+
+                        <a href="{{ absolute_url(asset('')) }}app_dev.php/admin/evenement/delete/{{ event.idEvent }}" class="btn btn-primary" role="button">Supprimer</a>
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}
+{% block javascript %}
+    <!-- Vendor -->
+    <script src="{{ absolute_url(asset('assests/vendor/jquery/jquery.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-browser-mobile/jquery.browser.mobile.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/bootstrap/js/bootstrap.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/nanoscroller/nanoscroller.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/magnific-popup/jquery.magnific-popup.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-placeholder/jquery-placeholder.js')) }}"></script>
+    <!-- Specific Page Vendor -->
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-datatables/media/js/jquery.dataTables.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-datatables-bs3/assets/js/datatables.js')) }}"></script>
+    <!-- Theme Base, Components and Settings -->
+    <script src="{{ absolute_url(asset('assests/javascripts/theme.js')) }}"></script>
+    <!-- Theme Custom -->
+    <script src="{{ absolute_url(asset('assests/javascripts/theme.custom.js')) }}"></script>
+    <!-- Theme Initialization Files -->
+    <script src="{{ absolute_url(asset('assests/javascripts/theme.init.js')) }}"></script>
+    <!-- Examples -->
+    <script src="{{ absolute_url(asset('assests/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/javascripts/tables/examples.datatables.row.with.details.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/autosize/autosize.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/bootstrap-fileupload/bootstrap-fileupload.min.js')) }}"></script>
+{% endblock %}

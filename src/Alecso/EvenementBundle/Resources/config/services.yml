@@ -1,0 +1,4 @@
+services:
+#    alecso_evenement.example:
+#        class: Alecso\EvenementBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

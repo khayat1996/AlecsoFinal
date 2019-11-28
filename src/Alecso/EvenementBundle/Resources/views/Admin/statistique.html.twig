@@ -1,0 +1,61 @@
+<div id="div">
+</div>
+
+<table class="table table-bordered table-striped mb-none" id="datatable-default">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Date Debut</th>
+        <th>Date Fin</th>
+        <th>Ville</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    {% for event in evenements %}
+        <tr>
+            <td>{{ event.title }}</td>
+            <td>{{ event.type }}</td>
+            <td>{{ event.dateStart|date}}</td>
+            <td>{{ event.dateFin|date}}</td>
+            <td>{{ event.ville }}</td>
+        </tr>
+    {% else %}
+        <tr>
+            <td>No Records Found!</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{{ form_start(form) }}
+{{ form(form) }}
+{{ form_end(form) }}
+
+<script src="{{ absolute_url(asset('assests/vendor/jquery/jquery.js')) }}"></script>
+<script>
+    $(document).ready(function(){
+        $("#form_title").on('keyup', function(e) { // everytime keyup event
+            $('#spinner').show();
+            e.preventDefault();
+            var input = $(this).val();// We take the input value
+            var $search = $('#form_title');
+            $.ajax({
+                type: "POST",
+                url: "{{ path('alecso_search') }}",
+                dataType: "json",
+                data: $search.serialize(),
+                cache: false,
+                success: function(response) {
+                    $('.card-deck').replaceWith(response);
+                    $('#spinner').hide();
+                    console.log(response);
+                },
+                error: function(response) {
+                    console.log(response);
+                }
+            });
+        });
+    });
+
+</script>

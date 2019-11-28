@@ -1,0 +1,112 @@
+{% extends "adminBack.html.twig" %}
+{% block title %}Les Evenements{% endblock %}
+{% block pagetitle %}Liste Des Evenements : {% endblock %}
+{% block barebutton %}
+<div class="right-wrapper pull-right">
+    <ol class="breadcrumbs">
+        <li>
+            <a href="{{ absolute_url(asset('')) }}app_dev.php/admin/evenement/ajoute">
+                <span class="h4"> Ajouter Evenement </span> <i class="fa fa-plus"></i>
+            </a>
+        </li>
+    </ol>
+    <a class="sidebar-right-toggle" data-open="sidebar-right"><i class="fa fa-chevron-left"></i></a>
+</div>
+{% endblock %}
+{% block body %}
+    <section class="panel">
+        <header class="panel-heading">
+            <div class="panel-actions">
+                <a href="#" class="panel-action panel-action-toggle" data-panel-toggle></a>
+            </div>
+            <h2 class="panel-title">Liste Des Evenements</h2>
+        </header>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped mb-none" id="datatable-default">
+                <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>Title</th>
+                    <th>Type</th>
+                    <th>Date Debut</th>
+                    <th>Date Fin</th>
+                    <th>Ville</th>
+                    <th>Creator</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td><img src="{{ absolute_url(asset('files/')) }}{{ event.media }}" width="40" height="40"  /></td>
+                        <td>{{ event.title }}</td>
+                        <td>{{ event.type }}</td>
+                        <td>{{ event.dateStart|date}}</td>
+                        <td>{{ event.dateFin|date}}</td>
+                        <td>{{ event.ville }}</td>
+                        <td>
+                            {% if event.idAdmin == NULL %}
+                                {% for part in event.idPartenaire %}
+                                    {% if loop.first %}
+                                        {{ part.nom }}
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <img src="{{ absolute_url(asset('files/Alesco.jpg')) }}" width="35" height="35"  title="Alecso"/>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <center>
+                            <a href="{{ absolute_url(asset('')) }}app_dev.php/admin/evenement/showevent/{{ event.idEvent }}" class="btn btn-success btn-xs ml-1">Afficher</a>
+                            {% if event.idAdmin == NULL %}
+                                <a class="btn btn-tertiary btn-xs ml-1" disabled>Modifier</a>
+                            {% else %}
+                                <a href="{{ absolute_url(asset('')) }}app_dev.php/admin/evenement/update/{{ event.idEvent }}" class="btn btn-dark btn-xs ml-1">Modifier</a>
+                            {% endif %}
+                            <a href="{{ absolute_url(asset('')) }}app_dev.php/admin/evenement/delete/{{ event.idEvent }}" class="btn btn-warning btn-xs ml-1">Supprimer</a>
+
+                            </center>
+                        </td>
+
+
+
+
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td>No Records Found!</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+{% endblock %}
+{% block javascript %}
+    <!-- Vendor -->
+    <script src="{{ absolute_url(asset('assests/vendor/jquery/jquery.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-browser-mobile/jquery.browser.mobile.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/bootstrap/js/bootstrap.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/nanoscroller/nanoscroller.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/magnific-popup/jquery.magnific-popup.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-placeholder/jquery-placeholder.js')) }}"></script>
+    <!-- Specific Page Vendor -->
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-datatables/media/js/jquery.dataTables.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-datatables/extras/TableTools/js/dataTables.tableTools.min.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/vendor/jquery-datatables-bs3/assets/js/datatables.js')) }}"></script>
+    <!-- Theme Base, Components and Settings -->
+    <script src="{{ absolute_url(asset('assests/javascripts/theme.js')) }}"></script>
+    <!-- Theme Custom -->
+    <script src="{{ absolute_url(asset('assests/javascripts/theme.custom.js')) }}"></script>
+    <!-- Theme Initialization Files -->
+    <script src="{{ absolute_url(asset('assests/javascripts/theme.init.js')) }}"></script>
+    <!-- Examples -->
+    <script src="{{ absolute_url(asset('assests/javascripts/tables/examples.datatables.default.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/javascripts/tables/examples.datatables.row.with.details.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/javascripts/tables/examples.datatables.tabletools.js')) }}"></script>
+
+    <script src="{{ absolute_url(asset('assests/vendor/bootstrap-confirmation/bootstrap-confirmation.js')) }}"></script>
+    <script src="{{ absolute_url(asset('assests/javascripts/forms/examples.advanced.form.js')) }}"></script>
+
+{% endblock %}

@@ -1,0 +1,3 @@
+alecso_user_homepage_official:
+    path:     /
+    defaults: { _controller: AlecsoUserBundle:Default:index }

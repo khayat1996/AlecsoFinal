@@ -1,0 +1,109 @@
+{% extends "userFront.html.twig" %}
+{% block title %}Evenements{% endblock %}
+{% block stylecss %}
+    <link rel="stylesheet" href="{{ absolute_url(asset('assests/vendor/owl.carousel/assets/owl.carousel.css')) }}" />
+    <link rel="stylesheet" href="{{ absolute_url(asset('assests/front/style/styleinitShow.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('assests/front/style/styleShow.css')) }}">
+    <link rel="stylesheet" href="{{ absolute_url(asset('assests/vendor/owl.carousel/assets/owl.theme.default.css')) }}" />
+    <link rel="stylesheet" href="{{ absolute_url(asset('assests/vendor/bootstrap/css/bootstrap.css')) }}" />
+    <link rel="stylesheet" href="{{ absolute_url(asset('assests/vendor/font-awesome/css/font-awesome.css')) }}" />
+    <link rel="stylesheet" href="{{ absolute_url(asset('assests/vendor/magnific-popup/magnific-popup.css')) }}" />
+
+    <!-- Skin CSS -->
+    <link rel="stylesheet" href="{{ absolute_url(asset('assests/stylesheets/skins/default.css')) }}" />
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="{{ absolute_url(asset('assests/stylesheets/theme-custom.css')) }}">
+
+{% endblock %}
+{% block breakingnews %}
+    <!-- Breaking News Section Start -->
+
+    <div class="breaking-news-section section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <!-- Breaking News Wrapper Start -->
+                    <div class="breaking-news-wrapper">
+
+                        <!-- Breaking News Title -->
+                        <h5 class="breaking-news-title float-left">événements</h5>
+
+                        <!-- Breaking Newsticker Start -->
+                        <ul class="breaking-news-ticker float-left">
+                            {% for event in events %}
+                            <li><a href="{{ absolute_url(asset('')) }}app_dev.php/user/evenement/showevent/{{ event.idEvent }}">{{ event.title }}</a></li>
+                            {% endfor %}
+                        </ul><!-- Breaking Newsticker Start -->
+
+                        <!-- Breaking News Nav -->
+                        <div class="breaking-news-nav">
+                            <button class="news-ticker-prev"><i class="fa fa-angle-left"></i></button>
+                            <button class="news-ticker-next"><i class="fa fa-angle-right"></i></button>
+                        </div>
+
+                    </div><!-- Breaking News Wrapper End -->
+
+                </div>
+            </div>
+        </div>
+    </div><!-- Breaking News Section End -->
+{% endblock %}
+
+
+{% block body %}
+    <!-- Feature Post Row Start -->
+    <div class="row">
+
+        <div class="col-md-8 col-md-offset-2">
+            {% for event in events %}
+            <!-- Single Blog Start -->
+            <div class="single-blog mb-50">
+                <div class="blog-wrap">
+
+                    <!-- Meta -->
+                    <div class="meta fix">
+                        {% if event.idAdmin == NULL %}
+                            {% for part in event.idPartenaire %}
+                                {% if loop.first %}
+
+                                    <a href="#" class="meta-item author"><img src="{{ absolute_url(asset('files/')) }}{{ part.media }} " width="45" height="45"  title="Alecso"/>{{ part.nom }}</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                        <a href="#" class="meta-item author"><img src="{{ absolute_url(asset('files/Alesco.jpg')) }}" width="45" height="45"  title="Alecso"/>Alecso</a>
+                        {% endif %}
+
+                        <span class="meta-item date"><i class="fa fa-clock-o"></i>{{ event.dateCreate|date }}</span>
+                    </div>
+
+                    <!-- Title -->
+                    <h3 class="title"><a href="{{ absolute_url(asset('')) }}app_dev.php/user/evenement/showevent/{{ event.idEvent }}">{{ event.title }}</a></h3>
+
+                    <!-- Image -->
+                    <a href="{{ absolute_url(asset('')) }}app_dev.php/user/evenement/showevent/{{ event.idEvent }}" class="image"><img src="{{ absolute_url(asset('files/')) }}{{ event.media }}" alt="post"></a>
+
+                    <!-- Content -->
+                    <div class="content">
+
+                        <!-- Description -->
+                        <p>{{ event.description }}</p>
+                        <br>
+                        <!-- Read More -->
+                        <a href="{{ absolute_url(asset('')) }}app_dev.php/user/evenement/showevent/{{ event.idEvent }}" class="read-more">continue reading</a>
+
+                    </div>
+
+                </div>
+            </div><!-- Single Blog End -->
+            {% else %}
+                <p>No Records Found!</p>
+            {% endfor %}
+        </div>
+
+
+
+
+
+    </div><!-- Feature Post Row End -->
+{% endblock %}
